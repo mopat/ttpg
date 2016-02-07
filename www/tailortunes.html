@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TailorTunes</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ruda:400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/foundation.css"/>
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
+    <script src="js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.3.min.js"></script>
+    <script src="libs/sweetalert.min.js"></script>
+</head>
+
+<body id="body">
+<div id="rotation-trigger-box">
+    <div id="rotate-info-box">
+        <img alt="tapr-rotate-trigger" src="ui-images/taprotate-ring-tap.png">
+    </div>
+    <div id="rotate-90" class="rotate" data-rotate=90 data-side="left">
+    </div>
+    <div id="rotate-180" class="rotate" data-rotate=180 data-side="top">
+    </div>
+    <div id="rotate-270" class="rotate" data-rotate=270 data-side="right">
+    </div>
+    <div id="rotate-0" class="rotate" data-rotate=0 data-side="bottom">
+    </div>
+</div>
+<div id="spinner-loader-box">
+    <img src="ui-images/loading.gif" alt="loading.gif" id="loading-animation">
+
+    <h3 style="text-align: center; color: lightgray; font-family: 'Oxygen', sans-serif">Searching...</h3>
+</div>
+<div id="rotatable">
+    <div id="header">
+        <div class="row">
+            <div class="large-3 medium-3 columns left show-for-medium-up">
+                <div id="tabletop-info-box">
+                    <i class="fi-info"> Tabletop Mode</i>
+                </div>
+            </div>
+            <div id="login-box">
+                <div class="large-4 medium-6 small-12 columns right text-right">
+                    <a href="#" class="text-right" id="login-anchor"><i class="fi-torso"> Login</i></a>
+
+                    <div id="login-form-box" class="form-box">
+                        <form>
+                            <input type="text" id="login-username" placeholder="Username">
+                            <input type="password" id="login-password" placeholder="Password">
+
+                            <div style="width: 50%; float: left">
+                                <a href="#" class="button postfix" id="login-button">Login</a>
+                            </div>
+                            <div style="width: 50%;  float: left">
+                                <a href="#" class="button postfix cancel-button">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a href="#" class="text-right" id="sign-in-anchor"><i class="fi-key"> Sign In</i></a>
+
+                    <div id="sign-in-form-box" class="form-box">
+                        <form>
+                            <input type="text" id="sign-in-username" placeholder="Username">
+                            <input type="password" id="sign-in-password" placeholder="Password">
+                            <input type="email" id="sign-in-email" placeholder="E-Mail">
+
+                            <div style="width: 50%; float: left">
+                                <a href="#" class="button postfix" id="sign-in-button">Sign In</a>
+                            </div>
+                            <div style="width: 50%; float: left">
+                                <a href="#" class="button postfix cancel-button">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="large-9 medium-9 small-12 columns right text-right">
+                <div id="loggedin-box">
+                    <span id="loggedin-username"></span>
+                    <a href="#" id="my-playlists-anchor">My Playlists</a>
+                    <a href="#" id="logout-anchor">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div id="user-playlist-modal" class="reveal-modal" data-reveal>
+            <div class="row">
+                <div class="large-12 medium-12 small-12 columns" id="no-playlists-info-panel">
+                    <div class="panel large-centered">
+                        <h2>No Playlists stored</h2>
+                        <button id="close-playlist-modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="user-playlist-box">
+            </div>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+        <div class="row" id="options-box">
+            <div class="large-2 medium-2 small-1 columns right" id="search-icon-box">
+                <a href="#" class="button postfix" id="search-icon">
+                    <i class="fi-magnifying-glass"></i>
+                </a>
+            </div>
+            <div class="large-2 medium-2 small-4 columns left">
+                <div class="switch">
+                    <input id="sort-mode-switch" type="checkbox">
+                    <label for="sort-mode-switch">Sort</label>
+                    SORT
+                </div>
+            </div>
+            <form>
+                <div class="large-2 medium-2 small-3 columns text-center">
+                    <a href="#" class="options-button" id="clear-playlist-button"><i class="fi-x"></i>
+                        Clear
+                    </a>
+                </div>
+                <div class="large-2 medium-2 small-3 columns text-center">
+                    <a href="#" class="options-button" id="save-playlist-button"><i class="fi-save"></i>
+                        Save
+                    </a>
+                </div>
+                <div id="post-playlist-box" style="display: none">
+                    <div class="large-4 medium-4 small-12 columns">
+                        <input type="text" placeholder="Playlist Name" id="playlist-name-input">
+                    </div>
+                    <div class="large-2 medium-2 small-6  columns">
+                        <a href="#" class="button postfix" id="post-playlist-button">Save</a>
+                    </div>
+                    <div class="large-2 medium-2 small-6 columns">
+                        <a href="#" class="button postfix" id="cancel-post-playlist-button">Cancel</a>
+                    </div>
+                </div>
+            </form>
+            <div class="row show-for-small-only">
+                <div class="small-12 columns">
+                    <div id="swipe-left-to-delete">
+                        <i class="fi-arrow-left"> Swipe left to delete</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <form onsubmit="return false;" id="search-form">
+                <div class="row collapse" style="border-bottom: 1px solid black">
+                    <div id="picker-box" class="text-center">
+                        <a href="#">
+                            <div class="large-1 medium-1 small-4 columns picker picked" id="artist-tab">
+                                Artist
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="large-1 medium-1 small-4 columns picker unpicked" id="track-tab">
+                                Track
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="large-1 medium-1 small-4 columns picker unpicked" id="genre-tab">
+                                Genre
+                            </div>
+                        </a>
+                    </div>
+                    <div class="large-4 medium-4 small-12 columns">
+                        <input type="text" placeholder="search for" id="search-field">
+                    </div>
+                    <div class="large-2 medium-2 small-6 columns" id="artist-dropdown-box">
+                        <select id="artist-dropdown" class="search-dropdown" data-type="artist">
+                            <option value="song_hotttnesss-desc" data-api="echonest">Hottest</option>
+                            <option value="similar" data-api="echonest">Similar</option>
+                            <option value="tempo-top" data-api="echonest">Slow</option>
+                            <option value="tempo-bottom" data-api="echonest">Fast</option>
+                            <option value="energy-top" data-api="echonest">High Energy</option>
+                            <option value="energy-bottom" data-api="echonest">Low Energy</option>
+                            <option value="danceability-top" data-api="echonest">High Danceability</option>
+                            <option value="danceability-bottom" data-api="echonest">Low Danceability</option>
+                        </select>
+                    </div>
+                    <div class="large-2 medium-2 small-6  columns" id="track-dropdown-box">
+                        <select id="track-dropdown" class="search-dropdown" data-type="track">
+                            <option value="simple" data-api="soundcloud">Single</option>
+                            <option value="hottest" data-api="echonest">Hottest</option>
+                            <option value="similar" data-api="echonest">Similar</option>
+                        </select>
+                    </div>
+                    <div class="large-2 medium-2 small-6  columns" id="genre-dropdown-box">
+                        <select id="genre-dropdown" class="search-dropdown" data-type="genre">
+                            <option value="song_hotttnesss-top" data-api="echonest">Hottest</option>
+                            <option value="tempo-top" data-api="echonest">Slow</option>
+                            <option value="tempo-bottom" data-api="echonest">Fast</option>
+                            <option value="energy-top" data-api="echonest">High Energy</option>
+                            <option value="energy-bottom" data-api="echonest">Low Energy</option>
+                            <option value="danceability-top" data-api="echonest">High Danceability</option>
+                            <option value="danceability-bottom" data-api="echonest">Low Danceability</option>
+                        </select>
+                    </div>
+                    <div class="large-2 medium-2 small-4  columns">
+                        <a href="#" class="button postfix" id="search-button">Search</a>
+                    </div>
+                    <div class="large-1 medium-1 small-2  columns">
+                        <a href="#" class="button postfix" id="close-search-button"><i class="fi-x"></i> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="max-results-box">
+                        <div class="large-3 medium-3 small-6 columns text-center">
+
+                            Max results:
+                <span id="max-results-value">
+                    20
+                </span>
+                        </div>
+                        <div class="large-9 medium-9 small-6 columns">
+                            <input type="range" min="1" max="50" value="20" id="max-results">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+    <div class="row" id="choose-title-box">
+        <div class="large-12 medium-12 small-12 columns">
+            <div id="echonest-trackID-picker" class="reveal-modal" data-reveal>
+                <ul id="echonest-trackID-picker-ul">
+                </ul>
+                <a class="close-reveal-modal">&#215;</a>
+            </div>
+        </div>
+        <div class="large-12 medium-12 small-12 columns">
+            <div id="soundcloud-track-picker" class="reveal-modal" data-reveal>
+                <ul id="soundcloud-track-picker-ul">
+
+                </ul>
+                <a class="close-reveal-modal">&#215;</a>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="playlist-container">
+        <div class="large-12 medium-12 small-12 columns">
+            <div id="playlist-box">
+
+                <ul id="playlist">
+                    <div id="playlist-space-filler"><img alt="TailorTunes_Logo"
+                                                         src="ui-images/Tailortunes-white-font.png"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer id="sticky-footer">
+        <div class="row">
+            <div id="controls-box">
+                <div class="large-12 medium-12 small-12 columns" id="title-info-box">
+                    <div class="title-info text-center show-for-medium-up">
+                    </div>
+                    <div class="marquee title-info text-center show-for-small" data-duplicated='true'>
+                    </div>
+                </div>
+                <div id="music-button-box-wrapper" class="text-center">
+                    <div class="large-12 columns" id="music-button-box">
+                        <a href="#">
+                            <i class="controls fi-previous" id="previous-button"></i>
+                        </a>
+                        <a href="#">
+                            <i class="controls fi-pause" id="pause-button"></i>
+                        </a>
+                        <a href="#">
+                            <i class="controls fi-play" id="play-button"></i>
+                        </a>
+                        <a href="#">
+                            <i class="controls fi-next" id="next-button"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-8 medium-7 small-7 columns text-center">
+                        <audio id="player" controls="controls">
+                        </audio>
+                        <div id="time-slider-box">
+                            <div id="time-slider">
+                                <span id="elapsed-time" class="right">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-4 medium-4 small-5 columns text-center">
+                        <div id="volume-box">
+                            <a href="#"><i class="fi-minus volume-controls" id="volume-minus"></i></a>
+                            <i class="fi-volume volume-controls" id="volume-icon"></i>
+                            <a href="#"><i class="fi-plus volume-controls" id="volume-plus"></i></a>
+                            <span id="volume-value">100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="js/vendor/jquery.js"></script>
+<script src="libs/jquery.touchSwipe.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="libs/jquery-ui.min.js"></script>
+<script src="libs/jquery.ui.touch-punch.min.js"></script>
+<script src="libs/jquery.marquee.min.js"></script>
+<script src="libs/jquery.dim-background.min.js"></script>
+<script src="libs/underscore-min.js"></script>
+<script src="libs/string_score.js"></script>
+<script src="libs/soundcloud_sdk.js"></script>
+<script src="libs/jquery.transit.min.js"></script>
+<script src="libs/hammer.min.js"></script>
+<script src="libs/isMobile.js"></script>
+<script src="rotatableSortable.js"></script>
+
+<script type="text/javascript" src="src/App.js"></script>
+<script type="text/javascript" src="src/MainController.js"></script>
+<script type="text/javascript" src="src/Data/MainModel.js"></script>
+<script type="text/javascript" src="src/Playlist_Player/PlaylistView.js"></script>
+<script type="text/javascript" src="src/Playlist_Player/PlaylistOptions.js"></script>
+<script type="text/javascript" src="src/Playlist_Player/ControlsView.js"></script>
+<script type="text/javascript" src="src/Adaptation/Resize.js"></script>
+
+<script type="text/javascript" src="src/Search/SearchView.js"></script>
+<script type="text/javascript" src="src/Search/PickTrackView.js"></script>
+
+<script type="text/javascript" src="src/User/UserPlaylistManager.js"></script>
+<script type="text/javascript" src="src/User/UserManager.js"></script>
+<script type="text/javascript" src="src/User/UserPlaylistView.js"></script>
+<script type="text/javascript" src="src/User/UserManagementView.js"></script>
+<script type="text/javascript" src="src/User/SessionProperties.js"></script>
+
+<script type="text/javascript" src="src/QueryFactory.js"></script>
+<script type="text/javascript" src="src/Adaptation/RotationHandler.js"></script>
+<script type="text/javascript" src="src/Config/CONFIG.js"></script>
+<script type="text/javascript" src="src/SearchObject.js"></script>
+<script type="text/javascript" src="src/UserPlaylistObject.js"></script>
+
+<script type="text/html" id="user-playlist-tpl">
+    <div class="user-playlist-container">
+
+        <div class="user-playlist-header">
+            <div class="row">
+                <div class="large-8 medium-8 small-8 columns">
+                    <div class="user-playlist-name"><%= title %>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 medium-12 small-12 columns">
+                    <a href="#">
+                        <div class="load-playlist">LOAD</div>
+                    </a>
+                    <a href="#">
+                        <div class="trash-icon"><i class="fi-trash"></i></div>
+                    </a>
+
+                    <div class="user-playlist-length"><i class="fi-music"> </i> <%= length %></div>
+                    <a href="#">
+                        <div class="stop-icon"><i class="fi-stop"></i></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 medium-12 small-12 columns bar">
+                    <div style="left: 50%; right: 50%">
+                        <a href="#">
+                            <div class="open-icon"><img src="ui-images/arrow-down-icon.png" class="arrow-up-down"></div>
+                        </a>
+                        <a href="#">
+                            <div class="close-icon" style="display: none"><img src="ui-images/arrow-up-icon.png"
+                                                                               class="arrow-up-down">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="large-12 columns">
+                <ul class="user-playlist" id="<%= playlist_id %>">
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="user-playlist-item-tpl">
+    <li class="user-playlist-item" data-stream-url="<%= stream_url %>">
+        <a href="#" class="show-for-medium-up">
+            <div class="user-playlist-item-delete">
+                <i class="fi-trash"></i>
+            </div>
+        </a>
+        <a href="#" class="user-playlist-item-anchor">
+            <span class="user-playlist-number"></span>
+            <img class="user-playlist-item-image" src="<%= artwork_url %>">
+
+            <div class="user-playlist-title"><%= title %></div>
+            <div class="user-playlist-track-duration"><%= duration %></div>
+        </a>
+    </li>
+</script>
+<script type="text/html" id="playlist-item-tpl">
+    <li class="playlist-item" data-stream-url="<%= stream_url %>">
+        <a href="#" class="show-for-medium-up">
+            <div class="playlist-item-delete">
+                <i class="fi-trash"></i>
+            </div>
+        </a>
+        <a href="#" class="playlist-item-anchor">
+            <span class="playlist-number"></span>
+            <img class="playlist-item-image" src="<%= artwork_url %>">
+
+            <div class="playlist-title"><%= title %></div>
+            <div class="playlist-track-duration"><%= duration %></div>
+        </a>
+    </li>
+</script>
+<script>
+    $(document).foundation();
+    $(function () {
+        App.init();
+    });
+</script>
+</body>
+</html>

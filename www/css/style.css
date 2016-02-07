@@ -1,0 +1,793 @@
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+body {
+    background-color: #333333;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Ruda', sans-serif;
+    position: relative;
+    color: #f5f5f5 !important;
+}
+
+#mode-dropdown {
+    float: left;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#search-button {
+    border-right: 1px solid black;
+}
+
+#max-results-box {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+#max-results {
+    width: 90%;
+    margin-left: 5px;
+}
+
+/*Login CSS*/
+
+#login-form-box, #sign-in-form-box {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;;
+    display: none;
+}
+
+#loggedin-box {
+    display: none;
+    color: #ffffff;
+    line-height: 30px;
+    padding: 5px;
+}
+
+#loggedin-box, #login-box {
+    font-size: 1.1rem;
+}
+
+#login-failed, #sign-in-failed {
+    color: #df151d;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+#player {
+    background-color: #df151d;
+    width: 100%;
+    display: none;
+}
+
+#track-dropdown-box, #genre-dropdown-box {
+    display: none;
+}
+
+#login-anchor {
+    color: gray;
+}
+
+.picker {
+    height: 45px;
+    line-height: 40px;
+    color: #383838;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.picked {
+    background: #ff8802;
+    color: #000000;
+}
+
+.unpicked {
+    background: transparent;
+    color: #f5f5f5;
+}
+
+#artist-tab, #track-tab {
+    border-right: 1px solid black;
+}
+
+#search-form {
+    display: none;
+}
+
+.switch {
+    left: 10%;
+    right: 10%;
+}
+
+#header input, #header #search-icon, #header .button, #header select {
+    margin: 0;
+}
+
+#options-box, #search-form {
+    display: none;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.options-button {
+    color: white;
+    line-height: 37px;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+#options-box a:visited {
+    color: white;
+    border: none;
+}
+
+#options-box a:hover {
+    color: white;
+    border: none;
+}
+
+#options-box a:active {
+    color: lightgray;
+    border: none;
+}
+
+#options-box a:link {
+    color: white;
+    border: none;
+}
+
+#swipe-left-to-delete {
+    color: white;
+    text-align: center;
+}
+
+#save-playlist-button, #clear-playlist-button {
+    display: none;
+}
+
+#search-icon {
+    font-size: 2rem;
+    width: 100%;
+}
+
+/*Playlist CSS*/
+#spinner-loader-box {
+    display: none;
+    width: 200px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 40%;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+#playlist-space-filler {
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 10%;
+}
+
+#user-options {
+    font-size: 2rem;
+}
+
+#tabletop-info-box {
+    font-size: 1.1rem;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: none;
+}
+
+#loggedin-box, #login-box {
+    font-size: 1.3rem;
+}
+
+#my-playlists-anchor {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#no-playlists-info-panel {
+    text-align: center;
+}
+
+#user-playlist-box {
+    margin-top: 10px;
+}
+
+#playlist-box, #user-playlist-box {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+#playlist, .user-playlist {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+#playlist {
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#playlist a, .user-playlist a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    color: #f5f5f5;
+}
+
+.now-playing, .preview-playing {
+    font-weight: bolder;
+}
+
+.playlist-item, .user-playlist-item {
+    clear: both;
+    width: auto;
+    height: 50px;
+    line-height: 25px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+}
+
+#playlist a:hover, .user-playlist a:hover {
+    background: #424242;
+}
+
+#playlist a:active, .user-playlist a:active {
+    background: #343434;
+}
+
+.playlist-number, .user-playlist-number {
+    float: left;
+    width: 20px;
+    margin-left: 5px;
+    line-height: 50px;
+}
+
+.playlist-title, .user-playlist-title {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.playlist-item-delete, .user-playlist-item-delete {
+    max-width: 40px;
+    float: right;
+    line-height: 50px;
+    padding-right: 20px;
+    margin-left: 30px;
+}
+
+.playlist-item-image, .user-playlist-item-image {
+    float: left;
+    height: 50px;
+    padding: 3px 5px 3px 5px;
+    line-height: 50px;
+}
+
+.playlist-track-duration, .user-playlist-track-duration {
+    font-size: 0.9rem;
+}
+
+.drag {
+    cursor: move;
+    z-index: 10000;
+}
+
+/*trackpicker style*/
+
+.reveal-modal {
+    background: rgba(54, 51, 53, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+#echonest-trackID-picker-ul, #soundcloud-track-picker-ul {
+    overflow-y: auto;
+    max-height: 93%;
+    background: rgba(54, 51, 53, 0.9);
+    border-radius: 10px;
+}
+
+.modal-echonest-list-item, .modal-soundcloud-list-item {
+    min-height: 50px;
+    line-height: 25px;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    padding: 3px 5px 2px 5px;
+    color: whitesmoke;
+}
+
+/*user playlist mods*/
+.user-playlist-container {
+    line-height: 25px;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.user-playlist {
+    overflow-y: auto;
+    display: none;
+    background: rgba(54, 51, 53, 0.9);
+    border-radius: 10px;
+    height: 100%;
+}
+
+.user-playlist-header {
+    height: 100px;
+    line-height: 35px;
+    background: #616161;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    color: #f5f5f5;
+}
+
+.user-playlist-date {
+    display: none;
+}
+
+.user-playlist-length {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.bar {
+    background: rgb(255, 255, 255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(229, 229, 229, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e5e5e5', GradientType=0); /* IE6-9 */
+
+    height: 25px;
+    border-radius: 0 0 10px 10px;
+    width: 99.5%;
+}
+
+.load-playlist {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+    background-color: #555555;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.trash-icon {
+    text-align: center;
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 1.8rem;
+    width: 30px;
+}
+
+.open-icon, .close-icon {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+.stop-icon {
+    text-align: center;
+    float: right;
+    padding-right: 20px;
+    display: none;
+    font-size: 1.8rem;
+}
+
+.arrow-up-down {
+    height: 1.8rem;
+}
+
+/*Controls-Box: Slider and Buttons*/
+#controls-box {
+    height: auto;
+    background: #2f2f2f;
+}
+
+#controls-box input {
+    border: none;
+}
+
+#music-button-box-wrapper {
+    margin: 0 auto;
+}
+
+#music-button-box {
+    height: 60px;
+}
+
+#music-button-box a {
+    color: #f5f5f5;
+}
+
+#controls-box .ui-slider {
+    height: 0.5em !important;
+    border: none;
+    background: rgb(181, 189, 200); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(181, 189, 200, 1)), color-stop(36%, rgba(130, 140, 149, 1)), color-stop(100%, rgba(40, 52, 59, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b5bdc8', endColorstr='#28343b', GradientType=0); /* IE6-9 */
+
+}
+
+#controls-box .ui-slider .ui-slider-handle {
+    height: 1.2em !important;
+    width: 1.2em !important;
+    border-radius: 50% !important;
+    border: none;
+    background: rgb(254, 204, 177); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(254, 204, 177, 1) 0%, rgba(241, 116, 50, 1) 50%, rgba(234, 85, 7, 1) 66%, rgba(251, 149, 94, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(254, 204, 177, 1)), color-stop(50%, rgba(241, 116, 50, 1)), color-stop(66%, rgba(234, 85, 7, 1)), color-stop(100%, rgba(251, 149, 94, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(254, 204, 177, 1) 0%, rgba(241, 116, 50, 1) 50%, rgba(234, 85, 7, 1) 66%, rgba(251, 149, 94, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(254, 204, 177, 1) 0%, rgba(241, 116, 50, 1) 50%, rgba(234, 85, 7, 1) 66%, rgba(251, 149, 94, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(254, 204, 177, 1) 0%, rgba(241, 116, 50, 1) 50%, rgba(234, 85, 7, 1) 66%, rgba(251, 149, 94, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(254, 204, 177, 1) 0%, rgba(241, 116, 50, 1) 50%, rgba(234, 85, 7, 1) 66%, rgba(251, 149, 94, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feccb1', endColorstr='#fb955e', GradientType=0); /* IE6-9 */
+    outline: none !important;
+}
+
+.controls {
+    font-size: 3rem;
+    margin-left: 20px;
+}
+
+#time-slider-box {
+    padding-top: 21px;
+    margin-left: 50px;
+}
+
+#time-slider {
+    width: 100%;
+    bottom: 0px;
+}
+
+#time-box {
+    padding-top: 8px;
+    font-size: 0.8rem;
+    float: right;
+}
+
+#volume-box {
+    padding-top: 3px;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+#volume-box a {
+    color: #ffffff;
+}
+
+#volume-value {
+    color: #fff;
+    font-size: 0.7rem;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.volume-controls {
+    padding-left: 5px;
+    font-size: 1.7rem;
+}
+
+#elapsed-time {
+    color: #ffffff;
+    font-size: 0.8rem;
+    padding-top: 8px;
+}
+
+#title-info-box {
+    height: 1.3rem;
+    width: 100%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: #f5f5f5;
+    background: #404040;
+}
+
+.title-info {
+    color: #f5f5f5;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.marquee {
+    margin: 0 auto;
+    max-width: 1000px;
+    overflow: hidden;
+    height: 38px;
+}
+
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/*rotation mods*/
+#rotatable {
+    width: 100%;
+    height: 100%;
+    font-family: 'Ruda', sans-serif;
+    transform: rotate(0deg);
+}
+
+#rotation-trigger-box {
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9000;
+    display: none;
+}
+
+#rotate-info-box {
+    font-size: 3rem;
+    color: white;
+    position: absolute;
+    z-index: 10000;
+    top: 15%;
+    bottom: 25%;
+    left: 25%;
+    right: 25%;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.rotate {
+    width: 100px;
+    height: 100px;
+    background: url("../ui-images/tapring.png") no-repeat;
+    background-size: contain;
+    position: absolute;
+    z-index: 10000;
+}
+
+#rotate-90 {
+    left: 0;
+    top: 45%;
+}
+
+#rotate-180 {
+    top: 0;
+    right: 53%;
+    left: 47%;
+}
+
+#rotate-270 {
+    right: 0;
+    top: 45%;
+}
+
+#rotate-0 {
+    bottom: 0;
+    right: 53%;
+    left: 47%;
+}
+
+/*foundation modifications*/
+.columns {
+    padding: 0;
+}
+
+.close-reveal-modal {
+    margin-right: 20px !important;
+    top: 0px !important;
+}
+
+.switch {
+    color: #f5f5f5;
+}
+
+.button {
+    background: transparent;
+    font-family: 'Ruda', sans-serif !important;
+    z-index: 0;
+}
+
+.button:hover {
+    background: #ff8700;
+}
+
+#login-button, #sign-in-button {
+    border-right: 1px solid lightgrey;
+}
+
+#login-button, #sign-in-button, .cancel-button {
+    background-color: #003f54;
+    font-family: 'Ruda', sans-serif !important;
+    z-index: 10;
+}
+
+#login-button:hover, #sign-in-button:hover, .cancel-button:hover {
+    background: #ff8700;
+}
+
+/*scrollbar modifications*/
+/*webkit*/
+#playlist::-webkit-scrollbar, .user-playlist::-webkit-scrollbar {
+    width: 10px; /* for vertical scrollbars */
+    height: 10px; /* for horizontal scrollbars */
+}
+
+#playlist::-webkit-scrollbar-track, .user-playlist::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#playlist::-webkit-scrollbar-thumb, .user-playlist::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.reveal-modal::-webkit-scrollbar, .user-playlist::-webkit-scrollbar {
+    width: 10px; /* for vertical scrollbars */
+    height: 10px; /* for horizontal scrollbars */
+}
+
+.reveal-modal::-webkit-scrollbar-track, .user-playlist::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.reveal-modal::-webkit-scrollbar-thumb, .user-playlist::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+fieldset {
+    display: none;
+}
+
+* /IE/ *
+body {
+    scrollbar-face-color: rgba(0, 0, 0, 0.5);
+}
+
+/* searchlimit input range style */
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    height: 30px;
+    width: 16px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    height: 30px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+}
+
+i.controls:active, i#volume-minus:active, i#volume-plus:active {
+    color: #008cba;
+}
+
+/*start mods for mobile apps*/
+#tailortunes-start{
+
+}
