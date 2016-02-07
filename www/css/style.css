@@ -788,6 +788,10 @@ i.controls:active, i#volume-minus:active, i#volume-plus:active {
 }
 
 /*start mods for mobile apps*/
-#tailortunes-start{
 
+html, body{
+    overflow-y: hidden !important;
+}
+#controls-box{
+    overflow-y: hidden !important;
 }
