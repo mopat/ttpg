@@ -496,6 +496,8 @@ body {
     padding-top: 3px;
     color: #ffffff;
     font-size: 1.3rem;
+    width: 150px;
+    margin-right: 0 !important;
 }
 
 #volume-box a {
@@ -790,8 +792,8 @@ i.controls:active, i#volume-minus:active, i#volume-plus:active {
 /*start mods for mobile apps*/
 
 html, body{
-    overflow-y: hidden !important;
+    overflow-x: hidden !important;
 }
 #controls-box{
-    overflow-y: hidden !important;
+    overflow-x: hidden !important;
 }

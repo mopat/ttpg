@@ -10,7 +10,7 @@ App.MainController = (function () {
         userManager = null,
         userPlaylistView = null,
         userManagementView = null,
-        rotationHandler = null,
+
         resize = null,
 
         init = function () {
@@ -24,7 +24,7 @@ App.MainController = (function () {
             userManager = App.UserManager.init();
             userPlaylistView = App.UserPlaylistView.init();
             userManagementView = App.UserManagementView.init();
-            rotationHandler = App.RotationHandler.init();
+
             resize = App.Resize.init();
 
 
@@ -36,7 +36,7 @@ App.MainController = (function () {
             initUserPlaylistViewHandler();
             initPlaylistOptionsHandler();
             initUserAndPlaylistManagementHandler();
-            initRotationHandler();
+
             documentStart();
         },
 
@@ -186,13 +186,6 @@ App.MainController = (function () {
             $(playlistView).on("allPlaylistItemsRemoved", handleAllPlaylistItemsRemoved);
         },
 
-        initRotationHandler = function () {
-            $(rotationHandler).on("rotationChanged", handleRotationChange);
-        },
-
-        rotateAlert = function () {
-            rotationHandler._rotateAlert();
-        },
 
         handleTrackPick = function (event, src, title) {
             controlsView._handleTrackPicked(src, title);
