@@ -493,11 +493,19 @@ body {
 }
 
 #volume-box {
-    padding-top: 3px;
+    padding-top: 7px;
+    margin-left: 5%;
     color: #ffffff;
     font-size: 1.3rem;
-    width: 150px;
-    margin-right: 0 !important;
+    float: left;
+}
+
+@media (min-width: 24rem) {
+    #volume-box {
+        margin-left: 20px;
+        float: right;
+        padding-right: 30px;
+    }
 }
 
 #volume-box a {
@@ -791,9 +799,10 @@ i.controls:active, i#volume-minus:active, i#volume-plus:active {
 
 /*start mods for mobile apps*/
 
-html, body{
+html, body {
     overflow-x: hidden !important;
 }
-#controls-box{
+
+#controls-box {
     overflow-x: hidden !important;
 }

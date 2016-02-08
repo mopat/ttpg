@@ -55,7 +55,7 @@ App.PlaylistOptions = (function () {
                 isSortEnabled = true;
                 $(that).trigger("sortEnabled");
                 swal({
-                    title: "Sort mode enabled! Scrolling disabled.",
+                    title: "Scrolling disabled",
                     text: "Move item to bottom or upper border to scroll.",
                     animation: false
                 });

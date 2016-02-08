@@ -10,6 +10,7 @@ App.PlaylistView = (function () {
         defaultTextColor = null,
         playlistLength = 0,
         completePlaylist = [],
+        sortable = null,
 
         init = function () {
             $playlistBox = $("#playlist-box");
@@ -292,12 +293,23 @@ App.PlaylistView = (function () {
      add sort functionality
      */
         _addSortable = function () {
-            $playlist.rotatableSortable({
-                contentId: "#rotatable",
-                delegates: ".playlist-item",
-                rotation: getRotation(),
-                delay: 50,
-                sortEnd: function () {
+            var el = document.getElementById('playlist');
+            sortable = new Sortable(el, {
+                group: "name",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+                sort: true,  // sorting inside list
+                delay: 0, // time in milliseconds to define when the sorting should start
+                disabled: false, // Disables the sortable if set to true.
+                store: null,  // @see Store
+                animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
+
+                scroll: true, // or HTMLElement
+                scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+                scrollSpeed: 10, // px
+
+                setData: function (dataTransfer, dragEl) {
+                    dataTransfer.setData('Text', dragEl.textContent);
+                },
+                onSort: function (/**Event*/evt) {
                     setPlaylistIds();
                 }
             });
@@ -308,10 +320,8 @@ App.PlaylistView = (function () {
      remove sort functionality
      */
         _removeSortable = function () {
-            $("#playlist").destroy({
-                listId: "#playlist",
-                delegates: ".playlist-item"
-            });
+            sortable.destroy();
+
             return this;
         },
 
@@ -408,6 +418,7 @@ App.PlaylistView = (function () {
                     rotate();
                 }, 5);
             }
+
             return this;
         },
 
